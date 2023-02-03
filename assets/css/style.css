@@ -1,0 +1,19 @@
+
+.weather-header {
+    
+    margin-bottom: 20px;
+}
+
+h1 {
+    background-color: navy;
+    margin: none;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.text-white {
+
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
