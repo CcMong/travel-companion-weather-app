@@ -93,7 +93,7 @@ function displayWeatherData() {
 
     // DISPLAY THE CURRENT WEATHER AND FIVE-DAY FORECAST FOR THE userSearchInput
     
-    var queryGeoURL = `http://api.openweathermap.org/geo/1.0/direct?q=${userSearchInput}&limit=5&appid=${apiKey}`;
+    var queryGeoURL = `https://api.openweathermap.org/geo/1.0/direct?q=${userSearchInput}&limit=5&appid=${apiKey}`;
 
     $.ajax({
         url: queryGeoURL,
@@ -104,7 +104,7 @@ function displayWeatherData() {
             const lat = geoResponse[0].lat;
             const lon = geoResponse[0].lon;
 
-            var queryWeatherURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+            var queryWeatherURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
             $.ajax({
                 url: queryWeatherURL,
@@ -121,7 +121,7 @@ function displayWeatherData() {
 
                     var currentWeatherIconCode = currentDayWeather.weather[0].icon;
 
-                    var currentWeatherIconURL = `http://openweathermap.org/img/w/${currentWeatherIconCode}.png`;
+                    var currentWeatherIconURL = `https://openweathermap.org/img/w/${currentWeatherIconCode}.png`;
                    
 
                     // With the city name, date and weather icon extracted, we can now place them within the HTML
@@ -164,7 +164,7 @@ function displayWeatherData() {
 
                         var forecastIconCode = forecastReference.weather[0].icon;
 
-                        var forecastIconURL = `http://openweathermap.org/img/w/${forecastIconCode}.png`;
+                        var forecastIconURL = `https://openweathermap.org/img/w/${forecastIconCode}.png`;
 
                         forecastCard.append($("<img>").attr("src", forecastIconURL));
 
