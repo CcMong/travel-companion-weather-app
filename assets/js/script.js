@@ -117,7 +117,7 @@ function displayWeatherData() {
 
                     var currentTime = currentDayWeather.dt;                  
 
-                    var currentWeatherDate = moment.unix(currentTime).format("DD/MM/YYYY");
+                    var currentWeatherDate = moment.unix(currentTime).format("DD/MM/YYYY"); // Get the date using the unix timestamp
 
                     var currentWeatherIconCode = currentDayWeather.weather[0].icon;
 
@@ -131,7 +131,7 @@ function displayWeatherData() {
                     currentDayForecast.prepend(todayTitle);
                     currentDayForecast.append($("<img>").attr("src", currentWeatherIconURL));
 
-                    // We need temperature, windspeed and humidity
+                    // We need temperature, windspeed and humidity. Create p elements, put the info in each, and append to the HTML area
 
                     var currentTemperature = (currentDayWeather.main.temp - 273.15).toFixed(2);
                     
@@ -149,17 +149,18 @@ function displayWeatherData() {
 
                     for (let i = 0; i < 5; i++) {
 
+                        // Create the div element (card) that will contain the weather forecast information
                         var forecastCard = $("<div>").addClass("forecast col p-2 rounded-lg text-white");
 
-                        $("#forecast").append(forecastCard);
+                        $("#forecast").append(forecastCard); // Then append it to the forecast area in the HTML
 
-                        var forecastReference = forecastList[(i * 8) + 1];
+                        var forecastReference = forecastList[(i * 8) + 1]; // We want to target the second element of the 8 provided per day (because the first one was used for current weather conditions) for consistency
 
                         var forecastDate = moment.unix(forecastReference.dt).format("DD/MM/YYYY");
 
-                        //console.log(forecastDate);
-
                         forecastCard.append($("<h5>").html(forecastDate));
+
+                        // Get the forecast weather icon, put it in an img element and append to respective card
 
                         var forecastIconCode = forecastReference.weather[0].icon;
 
@@ -180,7 +181,20 @@ function displayWeatherData() {
                         forecastCard.append($("<p>").html(`Humidity: ${forecastHumidity} %`));   
 
                     };             
-                }
-            )
-        })    
-};  
+                });            
+        });    
+};
+
+
+// Add a click event listener to add a user search term to the beginning of the search history array, and to create the respective button
+
+$("#search-button").on("click", function(event) {
+
+    event.preventDefault();
+
+    userSearchInput = titleCase($("#search-input").val().trim()); // Makes the search title case before it is manipulated further
+
+    displayWeatherData();    
+});
+
+
