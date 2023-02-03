@@ -82,4 +82,12 @@ function displayWeatherData() {
         userSearchHistory.unshift(userSearchInput);
 
     }    
-};
+
+    // Once we have a "valid" array with the user's search input and search history, we set it into local storage to overwrite what was previously there
+
+    localStorage.setItem("userSearchHistory", JSON.stringify(userSearchHistory)); 
+
+    // Then we use the array elements to populate the search history
+
+    renderSearchHistoryButtons();
+};  
