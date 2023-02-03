@@ -134,24 +134,53 @@ function displayWeatherData() {
                     // We need temperature, windspeed and humidity
 
                     var currentTemperature = (currentDayWeather.main.temp - 273.15).toFixed(2);
-
-                    //console.log(currentTemperature);
-
+                    
                     currentDayForecast.append($("<p>").html(`Temperature: ${currentTemperature} \u00B0C`));
 
                     var currentWindSpeed = currentDayWeather.wind.speed;
-
-                    //console.log(currentWindSpeed);
 
                     currentDayForecast.append($("<p>").html(`Wind Speed: ${currentWindSpeed} KPH`));
 
                     var currentHumidity = currentDayWeather.main.humidity;
 
-                    //console.log(currentHumidity);
-
                     currentDayForecast.append($("<p>").html(`Humidity: ${currentHumidity} %`));
 
+                    // Now to create the 5-day forecast, we will loop over weatherResponse
 
-        }
-    )
+                    for (let i = 0; i < 5; i++) {
+
+                        var forecastCard = $("<div>").addClass("forecast col p-2 rounded-lg text-white");
+
+                        $("#forecast").append(forecastCard);
+
+                        var forecastReference = forecastList[(i * 8) + 1];
+
+                        var forecastDate = moment.unix(forecastReference.dt).format("DD/MM/YYYY");
+
+                        //console.log(forecastDate);
+
+                        forecastCard.append($("<h5>").html(forecastDate));
+
+                        var forecastIconCode = forecastReference.weather[0].icon;
+
+                        var forecastIconURL = `http://openweathermap.org/img/w/${forecastIconCode}.png`;
+
+                        forecastCard.append($("<img>").attr("src", forecastIconURL));
+
+                        var forecastTemp = (forecastReference.main.temp - 273.15).toFixed(2); // Convert to Celsius and round to two decimal places
+
+                        forecastCard.append($("<p>").html(`Temp: ${forecastTemp} \u00B0C`));
+
+                        var forecastWindSpeed = (forecastReference.wind.speed);
+
+                        forecastCard.append($("<p>").html(`Wind: ${forecastWindSpeed} KPH`));
+
+                        var forecastHumidity = forecastReference.main.humidity;
+
+                        forecastCard.append($("<p>").html(`Humidity: ${forecastHumidity} %`));   
+
+                    };             
+                }
+            )
+        })    
 };  
