@@ -110,20 +110,48 @@ function displayWeatherData() {
                 url: queryWeatherURL,
                 method: "GET",
                 }).then(function(weatherResponse) {
-
-                    //console.log(weatherResponse); 
                     
                     var forecastList = weatherResponse.list;// This is an array of 40 elements, each for a particular time stamp, over the five days being forecast
 
                     var currentDayWeather = forecastList[0];
 
-                    var currentTime = currentDayWeather.dt;
-
-                    //console.log(currentTime);
-
-                    //var currentDate = moment().format("DD/MM/YYYY");
+                    var currentTime = currentDayWeather.dt;                  
 
                     var currentWeatherDate = moment.unix(currentTime).format("DD/MM/YYYY");
+
+                    var currentWeatherIconCode = currentDayWeather.weather[0].icon;
+
+                    var currentWeatherIconURL = `http://openweathermap.org/img/w/${currentWeatherIconCode}.png`;
+                   
+
+                    // With the city name, date and weather icon extracted, we can now place them within the HTML
+
+                    var todayTitle = $("<h4>").html(`${userSearchInput} (${currentWeatherDate})`).addClass("title-header");
+
+                    currentDayForecast.prepend(todayTitle);
+                    currentDayForecast.append($("<img>").attr("src", currentWeatherIconURL));
+
+                    // We need temperature, windspeed and humidity
+
+                    var currentTemperature = (currentDayWeather.main.temp - 273.15).toFixed(2);
+
+                    //console.log(currentTemperature);
+
+                    currentDayForecast.append($("<p>").html(`Temperature: ${currentTemperature} \u00B0C`));
+
+                    var currentWindSpeed = currentDayWeather.wind.speed;
+
+                    //console.log(currentWindSpeed);
+
+                    currentDayForecast.append($("<p>").html(`Wind Speed: ${currentWindSpeed} KPH`));
+
+                    var currentHumidity = currentDayWeather.main.humidity;
+
+                    //console.log(currentHumidity);
+
+                    currentDayForecast.append($("<p>").html(`Humidity: ${currentHumidity} %`));
+
+
         }
     )
 };  
