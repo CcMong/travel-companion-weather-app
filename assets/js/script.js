@@ -103,6 +103,27 @@ function displayWeatherData() {
 
             const lat = geoResponse[0].lat;
             const lon = geoResponse[0].lon;
+
+            var queryWeatherURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+
+            $.ajax({
+                url: queryWeatherURL,
+                method: "GET",
+                }).then(function(weatherResponse) {
+
+                    //console.log(weatherResponse); 
+                    
+                    var forecastList = weatherResponse.list;// This is an array of 40 elements, each for a particular time stamp, over the five days being forecast
+
+                    var currentDayWeather = forecastList[0];
+
+                    var currentTime = currentDayWeather.dt;
+
+                    //console.log(currentTime);
+
+                    //var currentDate = moment().format("DD/MM/YYYY");
+
+                    var currentWeatherDate = moment.unix(currentTime).format("DD/MM/YYYY");
         }
     )
 };  
