@@ -46,3 +46,40 @@ function titleCase(x) {
     } return x.charAt(0).toUpperCase() + x.slice(1);
 }
 
+var currentDayForecast = $(".card-content");
+
+var fiveDayForecast = $("#forecast");
+
+const apiKey = config.API_KEY;
+
+var userSearchInput = "";
+
+// Function to Display Weather Data
+
+function displayWeatherData() {
+
+    currentDayForecast.empty();
+
+    fiveDayForecast.empty();    
+
+    // if userSearchInput exists (must get it all in the same form) in the userSearchHistory array, then we want to take the value out and re-place it at the top of the array
+
+    if(userSearchHistory.includes(userSearchInput) == true) {
+
+        // First get the index of the duplicate city value
+        var duplicateCityIndex = userSearchHistory.indexOf(userSearchInput);
+
+        // Then splice the value out of the array
+        var duplicateCity = userSearchHistory.splice(duplicateCityIndex, 1); // This is actually a one-element array
+
+        console.log(duplicateCity[0]);
+
+        // Lastly, affix it to the beginning of the array
+        userSearchHistory.unshift(duplicateCity[0]);
+
+    } else {
+
+        userSearchHistory.unshift(userSearchInput);
+
+    }    
+};
