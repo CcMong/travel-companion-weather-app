@@ -210,5 +210,17 @@ $(document).on("click", ".historyBtn", function(event) {
 })
 
 
+// Add an event listener to the Clear Search History button, which clears local storage and the rendered buttons
+
+$("#clear-button").on("click", function(event) {
+
+    event.preventDefault();
+
+    window.localStorage.clear();
+
+    location.reload();
+})
+
+renderSearchHistoryButtons(); // We want to call this function as standard when the page is loaded. At the start, we check if there is any historical search data in local storage. If there is, then the array is parsed. And calling this function will display all the buttons according to the elements in the array.
 
 
