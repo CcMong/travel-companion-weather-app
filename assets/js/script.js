@@ -90,4 +90,19 @@ function displayWeatherData() {
     // Then we use the array elements to populate the search history
 
     renderSearchHistoryButtons();
+
+    // DISPLAY THE CURRENT WEATHER AND FIVE-DAY FORECAST FOR THE userSearchInput
+    
+    var queryGeoURL = `http://api.openweathermap.org/geo/1.0/direct?q=${userSearchInput}&limit=5&appid=${apiKey}`;
+
+    $.ajax({
+        url: queryGeoURL,
+        method: "GET",
+        }).then(function(geoResponse) {
+            //console.log(geoResponse);
+
+            const lat = geoResponse[0].lat;
+            const lon = geoResponse[0].lon;
+        }
+    )
 };  
