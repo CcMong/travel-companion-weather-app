@@ -37,3 +37,12 @@ function renderSearchHistoryButtons() {
         }
     };
 }
+
+// Function to apply title case to a word
+
+function titleCase(x) {
+    if(typeof x !== "string") {
+        return "";
+    } return x.charAt(0).toUpperCase() + x.slice(1);
+}
+
