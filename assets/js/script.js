@@ -198,3 +198,17 @@ $("#search-button").on("click", function(event) {
 });
 
 
+// Add an event listener so that, if a user clicks on one of the search history buttons, it will also display the information for the respective city
+
+$(document).on("click", ".historyBtn", function(event) {
+
+    event.preventDefault();
+
+    userSearchInput = titleCase($(this).attr("data-city"));
+
+    displayWeatherData();    
+})
+
+
+
+
