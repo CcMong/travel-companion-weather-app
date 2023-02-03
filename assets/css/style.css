@@ -17,3 +17,76 @@ h1 {
     font-family: Arial, Helvetica, sans-serif;
     color: white;
 }
+
+h2 {
+    font-size: 20px;
+}
+
+aside {
+
+    margin-left: 10px;
+}
+
+#five-day-title {
+
+    margin: 10px;
+}
+
+#form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+#search-button {
+    color: white;
+}
+
+.title-header {
+    display: inline-block;
+}
+
+#clear-button {
+    background-color: green;
+}
+
+.forecast-group {
+
+    display: flex;
+    flex-direction: row;
+
+}
+
+.forecast {
+    background-color: navy;
+    margin: 10px;
+}
+
+.historyBtn {
+
+    color: black;
+    background-color: silver;
+    border: none;
+    margin-bottom: 5px;
+}
+
+.historyBtn:hover {
+
+    background-color: grey;
+}
+
+#today {
+
+    border: 1px solid silver;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    min-height: 50px;
+    padding: 10px;
+}
+
+h5 {
+
+    font-weight: bold;
+    font-size: 20px;
+}
