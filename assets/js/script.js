@@ -70,9 +70,7 @@ function displayWeatherData() {
         var duplicateCityIndex = userSearchHistory.indexOf(userSearchInput);
 
         // Then splice the value out of the array
-        var duplicateCity = userSearchHistory.splice(duplicateCityIndex, 1); // This is actually a one-element array
-
-        console.log(duplicateCity[0]);
+        var duplicateCity = userSearchHistory.splice(duplicateCityIndex, 1); // This is actually a one-element array      
 
         // Lastly, affix it to the beginning of the array
         userSearchHistory.unshift(duplicateCity[0]);
